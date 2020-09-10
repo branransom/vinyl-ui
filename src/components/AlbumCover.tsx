@@ -7,25 +7,23 @@ interface AlbumCoverProps {
   id: string;
 }
 
-const AlbumCover = (props: AlbumCoverProps) => {
+const AlbumCover = ({ id }: AlbumCoverProps) => {
   const [imageURL, setImageURL] = useState('');
 
   useEffect(() => {
-    const { id } = props;
-
     const fetchImage = async () => {
       const response = await axios.get(`http://localhost:4000/albums/${id}`);
 
       setImageURL(
         response.data.images.find(
           (image: { height: number; width: number }) =>
-            image.height === 300 && image.width === 300
+            image.height === 64 && image.width === 64
         ).url
       );
     };
 
     fetchImage();
-  }, []);
+  }, [id]);
 
   if (!imageURL) {
     return <div className="album-cover" />;

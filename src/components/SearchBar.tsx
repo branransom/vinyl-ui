@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 
+import './SearchBar.css';
+
 type InputEvent = React.ChangeEvent<HTMLInputElement>;
 
-export default () => {
-  const [value, setValue] = useState('');
+interface SearchBarProps {
+  handleChange: (event: InputEvent) => void;
+  value: string;
+}
 
-  const handleChange = (event: InputEvent) => {
-    setValue(event.target.value);
-  };
-
+export default ({ handleChange, value }: SearchBarProps) => {
   return (
     <input
+      className="search-bar"
       onChange={handleChange}
       value={value}
-      placeholder="Search for a song"
+      placeholder="Search for a song..."
     />
   );
 };
