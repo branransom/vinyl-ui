@@ -1,0 +1,14 @@
+{
+  "include": ["server/**/*", "eslintrc.js"],
+  "compilerOptions": {
+    "allowJs": true,
+    "outDir": "build",
+    "target": "es5",
+    "module": "commonjs",
+    "jsx": "react",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  }
+}

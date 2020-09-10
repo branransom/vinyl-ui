@@ -1,6 +1,6 @@
-const Router = require('@koa/router');
+import Router from '@koa/router';
 
-const { requireSignIn } = require('../middleware/requireSignIn');
+import requireSignIn from '../middleware/requireSignIn';
 
 const router = new Router();
 
@@ -16,4 +16,4 @@ router.get('/callback', requireSignIn, async ctx => {
   ctx.redirect('/');
 });
 
-module.exports = router;
+export default router;

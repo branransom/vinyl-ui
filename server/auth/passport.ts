@@ -1,20 +1,26 @@
-const passport = require('koa-passport');
-const OAuth2Strategy = require('passport-oauth2').Strategy;
-const { uuid } = require('uuidv4');
+import passport from 'koa-passport';
+import { Strategy as OAuth2Strategy } from 'passport-oauth2';
+import { uuid } from 'uuidv4';
 
-const TokenManager = require('./TokenManager');
+import TokenManager from './TokenManager';
 
 const { SPOTIFY_CLIENT_ID } = process.env;
 const { SPOTIFY_CLIENT_SECRET } = process.env;
 
-const users = [];
+interface User {
+  id: string;
+  tokenManager: TokenManager;
+}
 
-passport.serializeUser((user, done) => {
+const users: Array<User> = [];
+
+passport.serializeUser((user: User, done) => {
   done(null, user.id);
 });
 
+/* eslint-disable-next-line consistent-return */
 passport.deserializeUser((id, done) => {
-  const user = users.find(user => user.id === id);
+  const user = users.find(_user => _user.id === id);
 
   if (!user) {
     return done(null, false);
@@ -30,7 +36,7 @@ passport.use(
       tokenURL: 'https://accounts.spotify.com/api/token',
       clientID: `${SPOTIFY_CLIENT_ID}`,
       clientSecret: `${SPOTIFY_CLIENT_SECRET}`,
-      callbackURL: 'http://localhost:3000/callback',
+      callbackURL: 'http://localhost:4000/callback',
     },
     (accessToken, refreshToken, params, profile, done) => {
       const tokenManager = new TokenManager(

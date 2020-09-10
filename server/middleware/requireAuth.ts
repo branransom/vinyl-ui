@@ -1,7 +1,9 @@
-const requireAuth = async (ctx, next) => {
+import Koa from 'koa';
+
+const requireAuth = async (ctx: Koa.Context, next: Function) => {
   if (!ctx.isAuthenticated() || !ctx.state.user) {
     ctx.redirect('/login');
-    return;
+    return next();
   }
 
   const { tokenManager } = ctx.state.user;
@@ -13,4 +15,4 @@ const requireAuth = async (ctx, next) => {
   return next();
 };
 
-module.exports = { requireAuth };
+export default requireAuth;

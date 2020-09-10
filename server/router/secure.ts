@@ -1,9 +1,18 @@
-const fs = require('fs').promises;
-const path = require('path');
-const axios = require('axios');
-const Router = require('@koa/router');
+import path from 'path';
+import { promises as fs } from 'fs';
+import axios from 'axios';
+import Router from '@koa/router';
 
-const { requireAuth } = require('../middleware/requireAuth');
+import requireAuth from '../middleware/requireAuth';
+
+interface Query {
+  q: string;
+  type: string;
+  market?: string;
+  limit?: number;
+  offset?: number;
+  include_external?: string;
+}
 
 const router = new Router();
 
@@ -34,6 +43,30 @@ router.get('/albums/:id', requireAuth, async ctx => {
   ctx.body = response.data;
 });
 
+router.get('/search', requireAuth, async ctx => {
+  const { tokenManager } = ctx.state.user;
+
+  const { query }: { query: Query } = ctx.request;
+
+  const queryString = Object.entries(query)
+    .map(
+      ([key, value]) =>
+        `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
+    )
+    .join('&');
+
+  const response = await axios.get(
+    `https://api.spotify.com/v1/search?${queryString}`,
+    {
+      headers: {
+        Authorization: `Bearer ${tokenManager.getAccessToken()}`,
+      },
+    }
+  );
+
+  ctx.body = response.data;
+});
+
 router.get('*', requireAuth, async ctx => {
   ctx.type = 'html';
   ctx.body = await fs.readFile(
@@ -41,4 +74,4 @@ router.get('*', requireAuth, async ctx => {
   );
 });
 
-module.exports = router;
+export default router;

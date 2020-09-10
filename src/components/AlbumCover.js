@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+
 import './AlbumCover.css';
 
 class AlbumCover extends React.Component {
@@ -10,7 +11,7 @@ class AlbumCover extends React.Component {
   async componentDidMount() {
     const { id } = this.props;
 
-    const response = await axios.get(`http://localhost:3000/albums/${id}`);
+    const response = await axios.get(`http://localhost:4000/albums/${id}`);
 
     this.setState({
       imageURL: response.data.images.find(

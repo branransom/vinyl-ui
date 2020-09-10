@@ -1,7 +1,7 @@
-const passport = require('koa-passport');
+import passport from 'koa-passport';
 
 const requireSignIn = passport.authenticate('oauth2', {
   failureRedirect: '/login',
 });
 
-module.exports = { requireSignIn };
+export default requireSignIn;
