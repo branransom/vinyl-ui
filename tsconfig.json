@@ -1,5 +1,5 @@
 {
-  "include": ["server/**/*", "eslintrc.js"],
+  "include": ["server/**/*", "eslintrc.js", "src/**/*"],
   "compilerOptions": {
     "allowJs": true,
     "outDir": "build",
