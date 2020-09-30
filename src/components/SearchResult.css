@@ -1,7 +1,14 @@
 .search-result {
-  flex: 0 1 100%;
-  margin: auto;
-  display: flex;
-  align-items: center;
+  margin-left: 3rem;
+  display: grid;
+  grid-template-columns: 20% 80%;
 }
 
+.grid-column__image {
+  grid-column-start: 1;
+}
+
+.grid-column__text {
+  grid-column-start: 2;
+  margin: auto 0px;
+}

@@ -19,9 +19,10 @@ const mapAlbumId = (item: SpotifyItem) => {
 export default ({ item }: SearchResultProps) => {
   return (
     <div className="search-result">
-      <AlbumCover id={`${mapAlbumId(item)}`} />
-      <span>{mapTrackName(item)}</span>
+      <div className="grid-column__image">
+        <AlbumCover id={`${mapAlbumId(item)}`} />
+      </div>
+      <span className="grid-column__text">{mapTrackName(item)}</span>
     </div>
   );
 };
-
