@@ -3,16 +3,21 @@ import axios from 'axios';
 import { debounce } from 'lodash';
 
 import SearchBar from '../components/SearchBar';
-import SearchResult from '../components/SearchResult';
-import SpotifyItem from '../spotify/types/SpotifyItem';
+import Track from '../components/Track';
 
 import './SearchContainer.css';
 
 type InputEvent = React.ChangeEvent<HTMLInputElement>;
 
-export default () => {
+interface SearchContainerProps {
+  handleSearch: (tracks: Array<any>) => void;
+  tracks: Array<any>;
+}
+
+export default (props: SearchContainerProps) => {
+  const { tracks = [], handleSearch } = props;
+
   const [value, setValue] = useState('');
-  const [results, setResults] = useState<Array<SpotifyItem>>([]);
 
   const setResultsWhenUserStopsTyping = useCallback(
     debounce(async searchValue => {
@@ -20,7 +25,7 @@ export default () => {
         `/search?q=${searchValue}&type=track&limit=10`
       );
 
-      setResults(data.tracks.items);
+      handleSearch(data.tracks.items);
     }, 1000),
     []
   );
@@ -41,8 +46,8 @@ export default () => {
         <SearchBar handleChange={handleChange} value={value} />
       </div>
       <div className="div__search-results">
-        {results.map(result => (
-          <SearchResult item={result} />
+        {tracks.map(track => (
+          <Track item={track} />
         ))}
       </div>
     </div>

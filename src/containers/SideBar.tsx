@@ -5,7 +5,14 @@ import SpotifyItem from '../spotify/types/SpotifyItem';
 
 import './SideBar.css';
 
-export default () => {
+type ClickEvent = React.MouseEvent<HTMLDivElement, MouseEvent>;
+type KeyDownEvent = React.KeyboardEvent<HTMLDivElement>;
+
+interface SideBarProps {
+  handleClick: (tracks: Array<Object>) => void;
+}
+
+export default (props: SideBarProps) => {
   const [results, setResults] = useState<Array<SpotifyItem>>([]);
 
   useEffect(() => {
@@ -14,11 +21,28 @@ export default () => {
     });
   }, []);
 
+  const handleClick = async (event: ClickEvent | KeyDownEvent) => {
+    const playlistId = (event.target as HTMLElement).id;
+    const { data } = await axios.get(`/playlists/${playlistId}/tracks`);
+
+    // TODO: Set item type
+    props.handleClick(data.items.map((item: any) => item.track));
+  };
+
   return (
     <div className="gridrow__side-bar">
       <h1>Playlists</h1>
       {results.map(result => (
-        <div className="div__playlist">{result.name}</div>
+        <div
+          id={result.id}
+          className="div__playlist"
+          onClick={handleClick}
+          onKeyDown={handleClick}
+          role="button"
+          tabIndex={0}
+        >
+          {result.name}
+        </div>
       ))}
     </div>
   );

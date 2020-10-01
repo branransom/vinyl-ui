@@ -40,6 +40,21 @@ router.get('/playlists', requireAuth, async ctx => {
   ctx.body = response.data;
 });
 
+router.get('/playlists/:playlistId/tracks', requireAuth, async ctx => {
+  const { tokenManager } = ctx.state.user;
+
+  const response = await axios.get(
+    `https://api.spotify.com/v1/playlists/${ctx.params.playlistId}/tracks`,
+    {
+      headers: {
+        Authorization: `Bearer ${tokenManager.getAccessToken()}`,
+      },
+    }
+  );
+
+  ctx.body = response.data;
+});
+
 router.get('/albums/:id', requireAuth, async ctx => {
   const { tokenManager } = ctx.state.user;
 

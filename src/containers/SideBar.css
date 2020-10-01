@@ -1,12 +1,12 @@
 .gridrow__side-bar {
   display: grid;
-  height: 100%;
-  width: 20%;
   float: left;
+  min-width: 20%;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 .div__playlist {
   margin-left: 4px;
-  margin-top: 4px;
-  margin-bottom: 4px;
+  margin-top: 1rem;
 }
