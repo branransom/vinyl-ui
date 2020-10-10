@@ -5,8 +5,23 @@
   width: 80%;
   height: 100vh;
 }
+
 .div__search-bar {
   align-text: center;
+  margin-bottom: 2rem;
+}
+
+.div__header {
+  display: grid;
+  grid-template-columns: 10% 45% 45%;
+}
+
+.div__header--track {
+  grid-column-start: 2;
+}
+
+.div__header--artist {
+  grid-column-start: 3;
 }
 
 .div__search-results {

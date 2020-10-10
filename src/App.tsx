@@ -10,6 +10,7 @@ const App = () => {
   const [tracks, setTracks] = useState<Array<SpotifyItem>>([]);
 
   const updateContent = (_tracks: any) => {
+    console.log(_tracks);
     setTracks(_tracks);
   };
 

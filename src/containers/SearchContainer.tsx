@@ -45,6 +45,10 @@ export default (props: SearchContainerProps) => {
       <div className="div__search-bar">
         <SearchBar handleChange={handleChange} value={value} />
       </div>
+      <div className="div__header">
+        <span className="div__header--track">TITLE</span>
+        <span className="div__header--artist">ARTIST</span>
+      </div>
       <div className="div__search-results">
         {tracks.map(track => (
           <Track item={track} />
