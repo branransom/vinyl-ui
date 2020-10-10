@@ -1,19 +1,20 @@
 .div__search-container {
   overflow-y: auto;
   margin-left: 20%;
-  padding-top: 1rem;
   width: 80%;
   height: 100vh;
+  background-color: #202020;
+  color: white;
 }
 
 .div__search-bar {
-  align-text: center;
   margin-bottom: 2rem;
+  background-image: linear-gradient(#606060, #202020);
 }
 
 .div__header {
   display: grid;
-  grid-template-columns: 10% 45% 45%;
+  grid-template-columns: 10% 35% 35% 20%;
 }
 
 .div__header--track {

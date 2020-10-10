@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './SearchBar.css';
+import './SearchBar.scss';
 
 type InputEvent = React.ChangeEvent<HTMLInputElement>;
 

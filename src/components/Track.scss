@@ -1,7 +1,10 @@
 .track {
   display: grid;
-  grid-template-columns: 10% 45% 45%;
-  border-bottom: 1px solid black;
+  grid-template-columns: 10% 35% 35% 20%;
+  border-bottom: 1px solid #606060;
+  &:hover {
+    background-color: #606060;
+  }
 }
 
 .grid-column__image {
@@ -15,5 +18,10 @@
 
 .grid-column__artist {
   grid-column-start: 3;
+  margin: auto 0px;
+}
+
+.grid-column__chord-chart {
+  grid-column-start: 4;
   margin: auto 0px;
 }

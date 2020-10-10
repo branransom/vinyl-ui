@@ -4,9 +4,17 @@
   min-width: 20%;
   height: 100vh;
   overflow-y: auto;
+  align-items: center;
+  background-color: #181818;
+  color: #C8C8C8;
 }
 
 .div__playlist {
   margin-left: 4px;
   margin-top: 1rem;
+  cursor: pointer;
+
+  &:hover {
+    color: white;
+  }
 }

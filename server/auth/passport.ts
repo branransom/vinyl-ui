@@ -1,6 +1,6 @@
 import passport from 'koa-passport';
 import { Strategy as OAuth2Strategy } from 'passport-oauth2';
-import { uuid } from 'uuidv4';
+import { v4 as uuid } from 'uuid';
 
 import TokenManager from './TokenManager';
 
@@ -37,6 +37,7 @@ passport.use(
       clientID: `${SPOTIFY_CLIENT_ID}`,
       clientSecret: `${SPOTIFY_CLIENT_SECRET}`,
       callbackURL: 'http://localhost:4000/callback',
+      scope: 'playlist-modify-public',
     },
     (accessToken, refreshToken, params, profile, done) => {
       const tokenManager = new TokenManager(

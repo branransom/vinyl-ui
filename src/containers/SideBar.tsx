@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import SpotifyItem from '../spotify/types/SpotifyItem';
 
-import './SideBar.css';
+import './SideBar.scss';
 
 type ClickEvent = React.MouseEvent<HTMLDivElement, MouseEvent>;
 type KeyDownEvent = React.KeyboardEvent<HTMLDivElement>;
@@ -31,7 +31,7 @@ export default (props: SideBarProps) => {
 
   return (
     <div className="gridrow__side-bar">
-      <h1>Playlists</h1>
+      <h3>PLAYLISTS</h3>
       {results.map(result => (
         <div
           id={result.id}

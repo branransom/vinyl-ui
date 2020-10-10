@@ -25,6 +25,8 @@ router.get('/me', requireAuth, async ctx => {
     },
   });
 
+  console.log(tokenManager.getAccessToken());
+
   ctx.body = `Hello ${response.data.display_name}! Your user profile can be found at ${response.data.href}`;
 });
 
@@ -90,6 +92,18 @@ router.get('/search', requireAuth, async ctx => {
       },
     }
   );
+
+  ctx.body = response.data;
+});
+
+router.post('/playlists', requireAuth, async ctx => {
+  const { tokenManager } = ctx.state.user;
+
+  const response = await axios.post('https://api.spotify.com/v1/me/playlists', {
+    headers: {
+      Authorization: `Bearer ${tokenManager.getAccessToken()}`,
+    },
+  });
 
   ctx.body = response.data;
 });

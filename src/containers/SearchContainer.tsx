@@ -5,17 +5,18 @@ import { debounce } from 'lodash';
 import SearchBar from '../components/SearchBar';
 import Track from '../components/Track';
 
-import './SearchContainer.css';
+import './SearchContainer.scss';
 
 type InputEvent = React.ChangeEvent<HTMLInputElement>;
 
 interface SearchContainerProps {
   handleSearch: (tracks: Array<any>) => void;
+  handleViewUpdate: (viewName: string) => void;
   tracks: Array<any>;
 }
 
 export default (props: SearchContainerProps) => {
-  const { tracks = [], handleSearch } = props;
+  const { tracks = [], handleSearch, handleViewUpdate } = props;
 
   const [value, setValue] = useState('');
 
@@ -51,7 +52,7 @@ export default (props: SearchContainerProps) => {
       </div>
       <div className="div__search-results">
         {tracks.map(track => (
-          <Track item={track} />
+          <Track item={track} handleViewUpdate={handleViewUpdate} />
         ))}
       </div>
     </div>

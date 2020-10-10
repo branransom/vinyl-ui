@@ -1,0 +1,16 @@
+.container {
+  grid-template-columns: 20vw 60vw;
+  grid-template-rows: auto;
+  max-width: 80vw;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar {
+  grid-column-start: 1;
+}
+
+.content {
+  grid-column-start: 2;
+}

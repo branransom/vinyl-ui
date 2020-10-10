@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import './AlbumCover.css';
+import './AlbumCover.scss';
 
 interface AlbumCoverProps {
   id: string;

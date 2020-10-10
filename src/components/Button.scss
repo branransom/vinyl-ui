@@ -1,0 +1,18 @@
+.button {
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 10rem;
+  background: #1DB954;
+  border: 1px solid white;
+  border-radius: 20px;
+  margin: auto 0px;
+
+  &:hover {
+   background: #90EE90; 
+   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+   cursor: pointer;
+  }
+}
+
